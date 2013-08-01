@@ -20,18 +20,18 @@ use Belsym\TestBundle\TestCases\ContainerAwareTestCase;
  */
 class ContainerAwareTestCaseTest extends \PHPUnit_Framework_TestCase
 {
-//    public function testKernelIsCreatedBeforeClass()
-//    {
-//        $foo = new FakeContainerAwareTestCase();
-//        $foo::setUpBeforeClass();
-//
-//        $this->assertInstanceOf('\AppKernel', $foo->getKernel(), 'Kernel is not an instance of "\AppKernel"');
-//    }
+    public function testKernelIsCreatedBeforeClass()
+    {
+        $foo = new FakeContainerAwareTestCase();
+        $foo::setUpBeforeClass();
+
+        $this->assertInstanceOf('\AppKernel', $foo->getKernel(), 'Kernel is not an instance of "\AppKernel"');
+    }
 
     public function testKernelIsOnlyActiveWhileTestsAreRunning()
     {
         $foo = new FakeContainerAwareTestCase();
-//        $foo::setUpBeforeClass();
+        $foo::setUpBeforeClass();
 
         $this->assertEquals(null, $foo->getContainer(), 'result of getContainer() should be null between tests');
 
@@ -45,18 +45,6 @@ class ContainerAwareTestCaseTest extends \PHPUnit_Framework_TestCase
         $foo->tearDown();
 
         $this->assertEquals(null, $foo->getContainer(), 'result of getContainer() should be null between tests');
-
-    }
-
-    public function testEntityManagerIsAvailable()
-    {
-        $foo = new FakeContainerAwareTestCase();
-        $foo::setUpBeforeClass();
-        $foo->setUp();
-
-        $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $foo->getEntityManager(), 'result of getEntityManager() should be an instance of "\Doctrine\ORM\EntityManager" during tests');
-
-        $foo->tearDown();
 
     }
 }

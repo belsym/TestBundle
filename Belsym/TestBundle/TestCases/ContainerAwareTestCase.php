@@ -41,9 +41,10 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
         {
             throw new \RuntimeException("You must include your project's AppKernel class");
         }
-        self::$kernel = new TestKernel('test', true);
+        error_log("ok");
+        self::$kernel = new \AppKernel('test', true);
+        error_log("out");
     }
-
 
     public function setUp()
     {
@@ -56,65 +57,6 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * create the database schema
-     */
-    public function generateSchema()
-    {
-        $metadata = $this->getMetaData();
-        if (!empty($metadata))
-        {
-            $tool = new SchemaTool($this->getEntityManager());
-            $this->dropSchema($tool, $metadata);
-            $tool->createSchema($metadata);
-            $this->dbActive = true;
-        }
-    }
-
-    /**
-     * drop the database schema. Will exit early if the $dbActive flag is not set
-     *
-     * @param SchemaTool $tool
-     * @param null $metadata
-     */
-    public function dropSchema(SchemaTool $tool = null, $metadata = null)
-    {
-        if(!$this->dbActive) return;
-
-        if(null === $metadata)
-            $metadata = $this->getMetadata();
-
-        if(!empty($metadata))
-        {
-            if(null === $tool)
-            {
-                $tool = new SchemaTool($this->getEntityManager());
-            }
-            $tool->dropSchema($metadata);
-            $this->dbActive = false;
-        }
-    }
-
-    /**
-     * Retrieve the Doctrine Metadata required to build the schema
-     *
-     * @return array
-     */
-    public function getMetadata()
-    {
-        return $this->getEntityManager()->getMetadataFactory()->getAllMetadata();
-    }
-
-    /**
-     * Get an instance of the Doctrine EntityManager
-     *
-     * @return EntityManager
-     */
-    public function getEntityManager()
-    {
-        return $this->getContainer()->get('doctrine')->getEntityManager();
-    }
-
-    /**
      * Get an instance of the Symfony ContainerInterface
      *
      * @return ContainerInterface
@@ -123,32 +65,4 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
     {
         return self::$kernel->getContainer();
     }
-}
-
-class TestKernel extends Kernel
-{
-    /**
-     * Returns an array of bundles to registers.
-     *
-     * @return BundleInterface[] An array of bundle instances.
-     *
-     * @api
-     */
-    public function registerBundles()
-    {
-        // TODO: Implement registerBundles() method.
-    }
-
-    /**
-     * Loads the container configuration
-     *
-     * @param LoaderInterface $loader A LoaderInterface instance
-     *
-     * @api
-     */
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        // TODO: Implement registerContainerConfiguration() method.
-    }
-
 }
