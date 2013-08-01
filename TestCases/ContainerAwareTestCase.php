@@ -8,14 +8,12 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-require_once __DIR__ . '/../../../../app/AppKernel.php';
-
 /**
- * Class KernelAwareTestCase
+ * Abstract class that enables 'real' container interaction.
  *
- * TODO add a class description
+ * More useful for Functional tests than Unit tests as it is essentially
+ * testing integration into an application.
  *
- * @package Belsym\TestBundle\TestCases
  * @author:    Matt Keeble <matt.keeble@gmail.com>
  * @copyright: (c) 2013 Beldougie Ltd
  *
@@ -36,6 +34,10 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
+        if(!class_exists('\AppKernel'))
+        {
+            throw new \RuntimeException("You must include your project's AppKernel class");
+        }
         self::$kernel = new \AppKernel('test', true);
     }
 

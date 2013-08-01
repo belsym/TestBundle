@@ -4,6 +4,8 @@
  */
 use Belsym\TestBundle\TestCases\ContainerAwareTestCase;
 
+require_once __DIR__.'/../../../../../app/AppKernel.php';
+
 /**
  * Class ContainerAwareTestCaseTest
  * 
