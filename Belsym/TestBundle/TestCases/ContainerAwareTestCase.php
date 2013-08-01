@@ -6,7 +6,10 @@ namespace Belsym\TestBundle\TestCases;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Abstract class that enables 'real' container interaction.
@@ -23,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \AppKernel $kernel
+     * @var Kernel $kernel
      */
     protected static $kernel;
 
@@ -38,7 +41,7 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
         {
             throw new \RuntimeException("You must include your project's AppKernel class");
         }
-        self::$kernel = new \AppKernel('test', true);
+        self::$kernel = new TestKernel('test', true);
     }
 
 
@@ -120,4 +123,32 @@ abstract class ContainerAwareTestCase extends \PHPUnit_Framework_TestCase
     {
         return self::$kernel->getContainer();
     }
+}
+
+class TestKernel extends Kernel
+{
+    /**
+     * Returns an array of bundles to registers.
+     *
+     * @return BundleInterface[] An array of bundle instances.
+     *
+     * @api
+     */
+    public function registerBundles()
+    {
+        // TODO: Implement registerBundles() method.
+    }
+
+    /**
+     * Loads the container configuration
+     *
+     * @param LoaderInterface $loader A LoaderInterface instance
+     *
+     * @api
+     */
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        // TODO: Implement registerContainerConfiguration() method.
+    }
+
 }
