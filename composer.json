@@ -1,23 +1,23 @@
 {
     "name": "belsym/test-bundle",
     "description": "A collection of Unit Testing classes",
-    "require-dev": {
-        "mockery/mockery": "dev-master",
-        "phpunit/phpunit": "3.7.19",
-        "symfony/http-kernel": "2.2.*",
-        "doctrine/orm": "2.2.*",
-        "symfony/dependency-injection": "2.2.*"
-    },
-    "license": "MIT",
     "authors": [
         {
             "name": "Matt Keeble",
             "email": "matt.keeble@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.0"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "mockery/mockery": "dev-master",
+        "phpunit/phpunit": "3.7.19",
+        "symfony/http-kernel": "2.2.*",
+        "doctrine/orm": "2.2.*",
+        "symfony/dependency-injection": "2.2.*"
     },
     "autoload": {
         "psr-0": {
