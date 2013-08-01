@@ -1,5 +1,6 @@
 {
     "name": "belsym/test-bundle",
+    "type": "symfony-bundle",
     "description": "A collection of Unit Testing classes",
     "authors": [
         {
