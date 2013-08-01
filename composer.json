@@ -1,0 +1,19 @@
+{
+    "name": "belsym/test-bundle",
+    "description": "A collection of Unit Testing classes",
+    "require-dev": {
+        "mockery/mockery": "dev-master",
+        "phpunit/phpunit": "3.7.19"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Keeble",
+            "email": "matt.keeble@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
